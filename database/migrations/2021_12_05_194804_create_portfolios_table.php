@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
-class CreateWorkexperiencesTable extends Migration
+class CreatePortfoliosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +14,13 @@ class CreateWorkexperiencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('workexperiences', function (Blueprint $table) {
+        Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('title')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->string('work_name')->nullable();
-            $table->string('work_place')->nullable();
-            $table->string('start_work')->nullable();
-            $table->string('finish_work')->nullable();
-            $table->string('responsibility_work')->nullable();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
+
         });
     }
 
@@ -34,6 +31,6 @@ class CreateWorkexperiencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workexperiences');
+        Schema::dropIfExists('portfolios');
     }
 }

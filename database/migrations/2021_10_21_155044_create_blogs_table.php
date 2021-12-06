@@ -21,6 +21,8 @@ class CreateBlogsTable extends Migration
             $table->string('post_on')->nullable();
             $table->string('post_by')->nullable();
             $table->string('post_description')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

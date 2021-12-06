@@ -26,6 +26,8 @@ class CreateAboutmesTable extends Migration
             $table->string('proyectdescription')->nullable();
             $table->string('review')->nullable();
             $table->string('namehumanreview')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

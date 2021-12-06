@@ -25,6 +25,16 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'personaldescription' => $this->faker->text,
+            'service' => $this->faker->text,
+            'servicedescription' => $this->faker->text,
+            'title_whatido' => $this->faker->text,
+            'title_aboutme' => $this->faker->text,
+
+            'message' => $this->faker->text,
+            'facebook' => $this->faker->text,
+            'twitter' => $this->faker->text,
+            'github' => $this->faker->text,
             'name' => $this->faker->name(),
             'slug' => $this->faker->word(),
             'email' => $this->faker->unique()->safeEmail(),

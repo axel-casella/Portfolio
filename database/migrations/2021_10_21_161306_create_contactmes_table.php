@@ -21,6 +21,8 @@ class CreateContactmesTable extends Migration
             $table->string('contact_email')->unique();
             $table->string('contact_phone')->nullable();
             $table->string('contact_city')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

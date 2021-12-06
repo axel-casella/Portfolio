@@ -7,17 +7,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Spatie\Permission\Traits\HasRoles;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use PhpParser\Node\Expr\FuncCall;
 
+
 class User extends Authenticatable
 {
+    
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +32,18 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
+        'tel',
+        'address',
+        'message',
+        'facebook',
+        'twitter',
+        'github',
+        'personaldescription',
+        'service',
+        'servicedescription',
+        'title_whatido',
+        'title_aboutme',
     ];
 
     /**
@@ -82,5 +98,18 @@ class User extends Authenticatable
 
     public function contactme(){
         return $this->hasMany(Contactme::class, 'user_id', 'id');
+    }
+
+    public function getGetimageAttribute($key)
+    {
+     if($this->image){
+         return url("storage/$this->image");
+     }
+    }   
+
+     public function getUppercaseAttribute($key)
+    {
+     
+         return strtoupper($this->name);
     }
 }

@@ -61,7 +61,19 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    //'home' => RouteServiceProvider::HOME,
+    'home' => function (){
+        if(Auth::user()->hasRole('admin')){
+           return route('dashboard'); 
+        }
+        if(Auth::user()->hasRole('client')){
+            return route('my-portfolio'); 
+         }
+         else{
+            return route('guest.dashboard');  
+         }
+    },
+
 
     /*
     |--------------------------------------------------------------------------

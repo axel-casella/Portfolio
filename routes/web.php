@@ -1,7 +1,12 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Skill;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SkillController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +19,9 @@ use App\Models\User;
 |
 */
 
-//Route::view('/', 'welcome');
+Route::view('/', 'welcome');
 
-Route::view('/', '404error');
+//Route::view('/', '404error');
 
 Route::get('portfolio/{slug}', function ($slug){
     $users = User::with('skill')->with('aboutme')->with('education')->with('workexperience')->with('blog')->with('contactme')->where('slug', $slug)->first();
@@ -24,10 +29,22 @@ Route::get('portfolio/{slug}', function ($slug){
     if($users){
     return view('portfolio')->with('users', $users);
     }else{
-        return view('404error');
+        return view('welcome');
     }
 });
 
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->name('dashboard');
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::resource('user', UserController::class)->except([
+        'show'
+    ]);
+    
+    Route::resource('skill', SkillController::class)->except([
+        'show'
+    ]);
+});

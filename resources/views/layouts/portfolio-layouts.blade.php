@@ -12,7 +12,7 @@
                         <div class="col-sm-6">
                             <div class="mh-header-info">
                                 <div class="mh-promo wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
-                                    <span>Hello I'm</span>
+                                    <span>{{ $users->message }}</span>
                                 </div>
                                 
                                 <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $users->name }}</h2>
@@ -25,17 +25,21 @@
                                 </ul>
                                 
                                 <ul class="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a href="{{ $users->facebook }}"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="{{ $users->twitter }}"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="{{ $users->github }}"><i class="fa fa-github"></i></a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="hero-img wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
                                 <div class="img-border">
+                                    @if ($users->image)
+                                    <img src="{{ $users->get_image }}" alt="{{ $users->name }}"  class="img-fluid">
+                                    @else
                                     <img src="{{asset('assets/images/hero.png')}}" alt=""  class="img-fluid">
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -59,7 +63,7 @@
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <div class="mh-about-inner">
-                            <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">About Me</h2>
+                            <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">{{ $aboutme->title_aboutme }}</h2>
                             @foreach ($users->aboutme as $aboutme)
                             <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $aboutme->personaldescription }}</></p>
                             @endforeach
@@ -93,7 +97,7 @@
             <div class="container">
                 <div class="row section-separator">
                     <div class="col-sm-12 text-center section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <h2>What I do</h2>
+                        <h2>{{ $aboutme->title_whatido }}</h2>
                     </div>
                     @foreach ($users->aboutme as $aboutme)
                     <div class="col-sm-4">
