@@ -31,7 +31,9 @@ class AboutmeFactory extends Factory
             'proyectdescription' => $this->faker->text,
             'review' => $this->faker->text,
             'namehumanreview' => $this->faker->name,
-            'user_id' => rand(1,6)
+            'download_algo' => $this->faker->name,
+            'do' => $this->faker->name,
+            'user_id' => rand(1,6),
         ];
     }
 }

@@ -22,12 +22,12 @@ class WorkexperienceFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => rand(1,6),
             'work_name' => $this->faker->name,
             'work_place' => $this->faker->name,
             'responsibility_work' => $this->faker->text,
             'start_work' => $this->faker->date,
             'finish_work' => $this->faker->date,
-            'user_id' => rand(1,6)
         ];
     }
 }

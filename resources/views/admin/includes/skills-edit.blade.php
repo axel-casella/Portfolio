@@ -4,15 +4,27 @@
         <div class="form-row">
                 <div class="col-md-6">
                     <label class="text-gray-700 text-sm fw-bold mb-2 mt-3" >
-                        Habilidades
+                        Habilidades Técnicas
                     </label>
-                    <input id="name" type="text"  name="name" class="form-control" value="{{ old('name', $skill->name) }}">
+                    <input id="name" type="text"  name="name" class="form-control" value="{{ old('name', $skill->name) }}" required>
                 </div>
                 <div class="col-md-6">
                     <label class="text-gray-700 text-sm fw-bold mb-2 mt-3" >
                         Porcentaje
                     </label>
-                    <input id="percent" type="text"  name="percent" class="form-control" value="{{ old('percent', $skill->percent) }}">
+                    <input id="percent" type="text"  name="percent" class="form-control" value="{{ old('percent', $skill->percent) }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="text-gray-700 text-sm fw-bold mb-2 mt-3" >
+                        Habilidades Profesionales
+                    </label>
+                    <input id="professionalname" type="text"  name="professionalname" class="form-control" value="{{ old('professionalname', $skill->professionalname) }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="text-gray-700 text-sm fw-bold mb-2 mt-3" >
+                        Porcentaje
+                    </label>
+                    <input id="professionalpercent" type="text"  name="professionalpercent" class="form-control" value="{{ old('professionalpercent', $skill->professionalpercent) }}" required>
                 </div>
             </div>
             @csrf

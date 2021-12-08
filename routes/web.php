@@ -1,12 +1,12 @@
 <?php
 
-
+use App\Http\Controllers\AboutMeController;
+use App\Http\Controllers\EducationController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
-use App\Models\Skill;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SkillController;
-
+use App\Http\Controllers\WorkexperienceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,18 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     ]);
     
     Route::resource('skill', SkillController::class)->except([
+        'show'
+    ]);
+
+    Route::resource('aboutme', AboutMeController::class)->except([
+        'show'
+    ]);
+
+    Route::resource('education', EducationController::class)->except([
+        'show'
+    ]);
+
+    Route::resource('experience', WorkexperienceController::class)->except([
         'show'
     ]);
 });

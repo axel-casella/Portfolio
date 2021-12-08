@@ -44,6 +44,11 @@ class User extends Authenticatable
         'servicedescription',
         'title_whatido',
         'title_aboutme',
+        'professionalname',
+        'professionalpercent',
+        'percent',
+        'name',
+        'title_job',   
     ];
 
     /**

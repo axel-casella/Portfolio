@@ -58,12 +58,19 @@
                 <div class="row section-separator">
                     <div class="col-sm-12 col-md-6">
                         <div class="mh-about-img shadow-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
-                            <img src="{{asset('assets/images/ab-img.png')}}" alt="" class="img-fluid">
+                                    @foreach ($users->aboutme as $aboutme)
+                                    @endforeach
+                                    @if ($aboutme->image)
+                                    <img src="{{ $aboutme->gett_image }}" alt="Sobre Mi"  class="img-fluid">
+                                    @else
+                                    <img src="{{asset('assets/images/ab-img.png')}}" alt="Sobre Mi"  class="img-fluid">
+                                    @endif
+                                    
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <div class="mh-about-inner">
-                            <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">{{ $aboutme->title_aboutme }}</h2>
+                            <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">{{ $aboutme->review }}</h2>
                             @foreach ($users->aboutme as $aboutme)
                             <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $aboutme->personaldescription }}</></p>
                             @endforeach
@@ -81,7 +88,7 @@
                                     <li><span>Javascript</span></li>-->
                                 </ul>
                             </div>
-                            <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod CV <i class="fa fa-download"></i></a>
+                            <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">{{ $aboutme->download_algo }}<i class="fa fa-download"></i></a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +104,7 @@
             <div class="container">
                 <div class="row section-separator">
                     <div class="col-sm-12 text-center section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <h2>{{ $aboutme->title_whatido }}</h2>
+                        <h2>{{$aboutme->do}}</h2>
                     </div>
                     @foreach ($users->aboutme as $aboutme)
                     <div class="col-sm-4">
@@ -193,7 +200,7 @@
                                                     <div class="percentagem-num">{{ $skill->percent }}</div>
                                                 </div>
                                                 <div class="progressBar">
-                                                    <div class="percentagem" style="width: {{ $skill->percent }}%;"></div>
+                                                    <div class="percentagem" style="width:{{ $skill->percent }}%;"></div>
                                                 </div>
                                             </div>
                                         </div>

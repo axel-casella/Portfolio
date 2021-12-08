@@ -17,6 +17,7 @@ class CreateAboutmesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
+            $table->string('image')->nullable();
             $table->string('personaldescription')->nullable();
             $table->string('service')->nullable();
             $table->string('servicedescription')->nullable();
@@ -26,6 +27,8 @@ class CreateAboutmesTable extends Migration
             $table->string('proyectdescription')->nullable();
             $table->string('review')->nullable();
             $table->string('namehumanreview')->nullable();
+            $table->string('download_algo')->nullable();
+            $table->string('do')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

@@ -30,7 +30,6 @@ class UserFactory extends Factory
             'servicedescription' => $this->faker->text,
             'title_whatido' => $this->faker->text,
             'title_aboutme' => $this->faker->text,
-
             'message' => $this->faker->text,
             'facebook' => $this->faker->text,
             'twitter' => $this->faker->text,
@@ -43,8 +42,9 @@ class UserFactory extends Factory
             'address' => $this->faker->address,
             'excerpt' =>$this->faker->text,
             'email_verified_at' => now(),
-            'password' => '$2a$12$f7N1aPeCyN2hmzIVQZy4LumV31xb4FREriM5cCmRlBLrzALnJiH/S', // password
+            'password' => '$2a$12$/D2Qy2xZDlDc3t1XhRpTZ.EbDqk11IRzEv/RS7zlP/keTYV.5IBfy', // 12345678
             'remember_token' => Str::random(10),
+            
         ];
     }
 

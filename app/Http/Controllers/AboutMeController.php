@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EditRequest;
-use App\Models\Skill;
+use App\Models\Aboutme;
 use Illuminate\Http\Request;
+use App\Http\Requests\AboutmeRequest;
+use Illuminate\Support\Facades\Storage;
 
-class SkillController extends Controller
+class AboutMeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +26,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -34,21 +35,9 @@ class SkillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Skill $skill)
+    public function store(Request $request)
     {
-        $data = $request->all();
-
-        $skill = Skill::create([
-            'name' => $data['name'],
-            'user_id' =>  intval( $data['user_id']),
-            'percent' =>  intval($data['percent']),
-            'professionalname' => $data['name'],
-            'professionalpercent' => intval($data['professionalpercent'])
-        ]);
-
-        $skill->save();
-
-        return redirect()->to('user/'.$data['user_id'].'/edit')->with('status','Se a creado una nueva Habilidad');
+        //
     }
 
     /**
@@ -80,10 +69,16 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Skill $skill)
-    {
-        $skill->update($request->all());
-        return redirect()->to('user/'.$skill->user_id.'/edit')->with('status','Se a modificado una Habilidad correctamente');
+    public function update(Request $request, Aboutme $aboutme)
+    {   
+        if($request->file('filee')){
+            Storage::disk('public')->delete($aboutme->image);
+            $aboutme->image =  $request->file('filee')->store('users','public');
+            $aboutme->save();
+        }
+
+        $aboutme->update($request->all());
+        return redirect()->to('user/'.$aboutme->user_id.'/edit')->with('status','Se a modificado la sección correctamente');
     }
 
     /**
@@ -92,12 +87,8 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy($id)
     {
-        $id = $skill->user_id;
-
-        $skill = Skill::find($skill->id);
-        $skill->delete();
-        return redirect()->to('user/'.$skill->user_id.'/edit')->with('status','Se a eliminado una Habilidad'); 
+        //
     }
 }

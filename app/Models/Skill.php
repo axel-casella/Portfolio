@@ -18,6 +18,8 @@ class Skill extends Model
         'name',
         'user_id',
         'percent',
+        'professionalname',
+        'professionalpercent',
     ];
 
     public function user(){
